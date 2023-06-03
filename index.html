@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Budgeting App </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+
+        h1{
+         text-align: center;
+         color: rgb(40, 164, 241);
+        }
+    </style>
+</head>
+<body>
+    <div class="container shadow p-3 mb-5 bg-body-tertiary rounded">
+        <h1>Add Expenses</h1>
+        <form id="expenseForm">
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" class="form-control" id="date" required>
+            </div>
+            <div class="form-group">
+                <label for="value">Value:</label>
+                <input type="number" class="form-control" id="value" required>
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select class="form-control" id="category" required>
+                    <option value="restaurant">Restaurant And Shopping  </option>
+                    <option value="shopping">Gift Cards</option>
+                    <option value="other">Credit And Loans</option>
+                </select>
+            </div>
+            <div class="form-group">
+               <label for="transactionNumber">Transaction Number:</label>
+               <input type="text" class="form-control" id="transactionNumber" required>
+           </div>
+            <button type="submit" class="btn btn-success">Add Expense</button>
+        </form>
+        <table id="expenseTable" class="table mt-4">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Value</th>
+                    <th>Category</th>
+                    <th>Transaction Number</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById('expenseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var date = document.getElementById('date').value;
+            var transactionNumber = document.getElementById('transactionNumber').value;
+            var value = document.getElementById('value').value;
+            var category = document.getElementById('category').value;
+
+            var table = document.getElementById('expenseTable').getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow(table.rows.length);
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
+
+            cell1.innerHTML = date;
+            cell2.innerHTML = transactionNumber;
+            cell3.innerHTML = value;
+            cell4.innerHTML = category;
+
+            document.getElementById('expenseForm').reset();
+        });
+    </script>
+    
+        <div class="container shadow p-3 mb-5 bg-body-tertiary rounded">
+            <h1>Budget Form</h1>
+            <form id="budgetForm">
+                <div class="form-group">
+                    <label for="dueDate">Due Date:</label>
+                    <input type="date" class="form-control" id="dueDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="recurring">Recurring:</label>
+                    <select class="form-control" id="recurring" required>
+                     <option value="restaurant">Yes</option>
+                     <option value="shopping">No</option>
+                 </select>
+                </div>
+                <div class="form-group">
+                    <label for="totalAmount">Total Amount:</label>
+                    <input type="number" class="form-control" id="totalAmount" required>
+                </div>
+                <div class="form-group">
+                    <label for="tax">Tax:</label>
+                    <input type="number" class="form-control" id="tax" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <input type="text" class="form-control" id="category" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea class="form-control" id="description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="paymentDate">Payment Date:</label>
+                    <input type="date" class="form-control" id="paymentDate" required>
+                </div>
+                <button type="submit" class="btn btn-success">Set Budget</button>
+            </form>
+        </div>
+    
+        <div class="container mt-5" id="overviewScreen" style="display: none;">
+            <h2>Budget Overview</h2>
+            <table id="budgetTable" class="table mt-4">
+                <thead>
+                    <tr>
+                        <th>Due Date</th>
+                        <th>Recurring</th>
+                        <th>Total Amount</th>
+                        <th>Tax</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Payment Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    
+        <script>
+            document.getElementById('budgetForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                var dueDate = document.getElementById('dueDate').value;
+                var recurring = document.getElementById('recurring').checked;
+                var totalAmount = document.getElementById('totalAmount').value;
+                var tax = document.getElementById('tax').value;
+                var category = document.getElementById('category').value;
+                var description = document.getElementById('description').value;
+                var paymentDate = document.getElementById('paymentDate').value;
+    
+                var table = document.getElementById('budgetTable').getElementsByTagName('tbody')[0];
+                var newRow = table.insertRow(table.rows.length);
+                var cell1 = newRow.insertCell(0);
+                var cell2 = newRow.insertCell(1);
+                var cell3 = newRow.insertCell(2);
+                var cell4 = newRow.insertCell(3);
+                var cell5 = newRow.insertCell(4);
+                var cell6 = newRow.insertCell(5);
+                var cell7 = newRow.insertCell(6);
+    
+                cell1.innerHTML = dueDate;
+                cell2.innerHTML = recurring ? 'Yes' : 'No';
+                cell3.innerHTML = totalAmount;
+                cell4.innerHTML = tax;
+                cell5.innerHTML = category;
+                cell6.innerHTML = description;
+                cell7.innerHTML = paymentDate;
+    
+                document.getElementById('overviewScreen').style.display = 'block';
+            });
+        </script>
+    </body>
+    </html>
